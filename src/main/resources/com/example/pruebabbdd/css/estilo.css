@@ -3,11 +3,23 @@
     -fx-background-radius: 15px;
 }
 
+
+
 .letrasTitulo {
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
 
 .anchorPane {
-    -fx-background-color: #84a0fd;
+    -fx-background-color: #e5e3e3;
+}
+
+.stage {
+    -fx-background-color: #0034ff;
+    -fx-text-fill: #ffffff;
+}
+
+.boton {
+    -fx-background-color: #0039ff;
+    -fx-text-fill: #ffffff;
 }

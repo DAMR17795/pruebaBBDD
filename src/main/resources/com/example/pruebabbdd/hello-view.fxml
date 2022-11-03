@@ -141,12 +141,12 @@
       </HBox>
       <VBox layoutX="586.0" layoutY="92.0" prefHeight="296.0" prefWidth="390.0" AnchorPane.leftAnchor="586.0" AnchorPane.rightAnchor="24.0">
          <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="BUSCAR">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="boton" text="BUSCAR">
                <VBox.margin>
                   <Insets top="95.0" />
                </VBox.margin>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="LIMPIAR">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="boton" text="LIMPIAR">
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>
@@ -154,19 +154,15 @@
          </children>
       </VBox>
       <TableView fx:id="tvDatos" layoutX="35.0" layoutY="594.0" prefHeight="176.0" prefWidth="935.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="594.0" />
-      <HBox layoutX="45.0" layoutY="435.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="133.0" prefWidth="620.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="28.0">
+      <HBox alignment="CENTER" layoutX="582.0" layoutY="438.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="133.0" prefWidth="212.0" AnchorPane.rightAnchor="28.0">
          <children>
-            <TextField fx:id="txtAreaConsulta" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="123.0" prefWidth="513.0" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" layoutX="582.0" layoutY="438.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="133.0" prefWidth="390.0" AnchorPane.rightAnchor="28.0">
-         <children>
-            <Button fx:id="btConsulta" mnemonicParsing="false" onAction="#onEjecutarConsulta" prefHeight="100.0" prefWidth="200.0" text="EJECUTAR CONSULTA">
+            <Button fx:id="btConsulta" mnemonicParsing="false" onAction="#onEjecutarConsulta" prefHeight="100.0" prefWidth="200.0" styleClass="boton" text="EJECUTAR CONSULTA">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
+      <TextField fx:id="txtAreaConsulta" alignment="CENTER" layoutX="29.0" layoutY="438.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#pulsarIntro" prefHeight="133.0" prefWidth="678.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="293.0" />
    </children>
 </AnchorPane>
