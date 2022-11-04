@@ -3,8 +3,6 @@
     -fx-background-radius: 15px;
 }
 
-
-
 .letrasTitulo {
     -fx-text-fill: white;
     -fx-font-weight: bold;
@@ -22,4 +20,25 @@
 .boton {
     -fx-background-color: #0039ff;
     -fx-text-fill: #ffffff;
+}
+
+.column-header {
+    -fx-background-color: #3a63ff;
+    -fx-text-fill: #ffffff;
+}
+
+.column-cell {
+    -fx-background-color: #3a63ff;
+}
+
+.table-cell:selected {
+    -fx-background-color: green;
+}
+
+.tabla {
+    -fx-background-color: #3a63ff;
+}
+
+.table-view {
+    -fx-background-color: #3a63ff;
 }

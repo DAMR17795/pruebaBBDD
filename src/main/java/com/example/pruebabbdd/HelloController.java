@@ -9,6 +9,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
@@ -18,6 +19,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 
 public class HelloController {
+    private ObservableList <Productos> datos;
     private ObservableList<ObservableList> data;
     @FXML
     private TableView tvDatos;
@@ -25,10 +27,29 @@ public class HelloController {
     private TextField txtAreaConsulta;
     @FXML
     private Button btConsulta;
+    @FXML
+    private TableColumn tcProductCode;
+    @FXML
+    private TableColumn tcProductName;
+    @FXML
+    private TableColumn tcProductLine;
+    @FXML
+    private TableColumn tcProductScale;
+    @FXML
+    private TableColumn tcProductVendor;
+    @FXML
+    private TableColumn tcQuantityInStock;
+    @FXML
+    private TableColumn tcBuyPrice;
+    @FXML
+    private TableColumn tcMSRP;
+    @FXML
+    private TableColumn tcProductDescription;
 
     @Deprecated
     public void onEjecutarConsulta(ActionEvent actionEvent) {
-     obtenerProductos();
+     //obtenerProductos();
+     cargarDatosTabla();
     }
 
     public void cargarDatos2() {
@@ -47,10 +68,9 @@ public class HelloController {
 
             }
 
-
             //SQL FOR SELECTING ALL OF CUSTOMER
             //String SQL = txtAreaConsulta.getText();
-            String SQL = "SELECT ProductName FROM Products";
+            String SQL = "SELECT * FROM Products";
             //ResultSet
             ResultSet rs = c.createStatement().executeQuery(SQL);
 
@@ -105,7 +125,8 @@ public class HelloController {
     private final String usuario = "adminer";
     private final String passwd = "adminer";
 
-
+    //PRIMERO OBTENEMOS LOS PRODUCTOS Y LOS GUARDAMOS EN UN ARRAYLIST DE PRODUCTOS
+    //ADEMÁS LOS MOSTRAMOS POR CONSOLA PARA VER QUE SE HA AÑADIDO
         public ObservableList<Productos> obtenerProductos() {
 
             ObservableList<Productos> datosResultadoConsulta = FXCollections.observableArrayList();
@@ -151,9 +172,29 @@ public class HelloController {
             @Override
             public void handle(KeyEvent keyEvent) {
                 if (keyEvent.getCode().equals(KeyCode.ENTER)) {
-                    obtenerProductos();
+                    cargarDatos2();
                 }
             }
         });
+    }
+    //LUEGO UTILIZAMOS EL METODO PARA CARGAR LOS DATOS EN LA TABLA
+    private void cargarDatosTabla () {
+        datos = obtenerProductos();
+
+        tcProductCode.setCellValueFactory(new PropertyValueFactory<Productos, String>("productCode"));
+        tcProductDescription.setCellValueFactory(new PropertyValueFactory<Productos, String>("productDescription"));
+        tcProductLine.setCellValueFactory(new PropertyValueFactory<Productos, String>("productLine"));
+        tcProductName.setCellValueFactory(new PropertyValueFactory<Productos, String>("productName"));
+        tcProductScale.setCellValueFactory(new PropertyValueFactory<Productos, String>("productScale"));
+        tcProductVendor.setCellValueFactory(new PropertyValueFactory<Productos, String>("productVendor"));
+        tcBuyPrice.setCellValueFactory(new PropertyValueFactory<Productos, Double>("buyPrice"));
+        tcMSRP.setCellValueFactory(new PropertyValueFactory<Productos, Double>("MSRP"));
+        tcQuantityInStock.setCellValueFactory(new PropertyValueFactory<Productos, Integer>("quantityInStock"));
+
+        tvDatos.setItems(datos);
+    }
+    //METODO PARA INICIALIZAR
+    public void initialize() {
+            cargarDatosTabla();
     }
 }
