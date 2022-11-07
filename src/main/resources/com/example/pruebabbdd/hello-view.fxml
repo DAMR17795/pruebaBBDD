@@ -43,82 +43,82 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label text="Nombre Cliente" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+            <Label text="Linea" GridPane.halignment="LEFT" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label text="Apellido Cliente" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+            <Label text="Escala" GridPane.halignment="LEFT" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label text="Telefono" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+            <Label text="Vendedor" GridPane.halignment="LEFT" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label text="Ciudad" GridPane.halignment="LEFT" GridPane.rowIndex="5">
+            <Label text="Stock" GridPane.halignment="LEFT" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label text="Pais" GridPane.halignment="LEFT" GridPane.rowIndex="6">
+            <Label text="P.Compra" GridPane.halignment="LEFT" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label text="Ciudad" GridPane.halignment="LEFT" GridPane.rowIndex="7">
+            <Label text="P.Venta Rec" GridPane.halignment="LEFT" GridPane.rowIndex="7">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label text="Pais" GridPane.halignment="LEFT" GridPane.rowIndex="8">
+            <Label text="Descripcion" GridPane.halignment="LEFT" GridPane.rowIndex="8">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Label>
-            <TextField GridPane.columnIndex="1" GridPane.valignment="CENTER">
+            <TextField fx:id="txtID" GridPane.columnIndex="1" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets top="5.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <TextField fx:id="txtNombre" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets top="5.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="txtLinea" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets top="5.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="txtEscala" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets top="5.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextField fx:id="txtVendedor" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets top="5.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <TextField fx:id="txtStock" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets top="5.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <TextField fx:id="txtPCompra" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets top="5.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <TextField fx:id="txtPVenta" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <GridPane.margin>
                   <Insets top="5.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="8">
+            <TextField fx:id="txtDescripcion" GridPane.columnIndex="1" GridPane.rowIndex="8">
                <GridPane.margin>
                   <Insets top="5.0" />
                </GridPane.margin>
@@ -142,9 +142,14 @@
       </HBox>
       <VBox layoutX="586.0" layoutY="92.0" prefHeight="296.0" prefWidth="390.0" AnchorPane.leftAnchor="586.0" AnchorPane.rightAnchor="24.0">
          <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="boton" text="BUSCAR">
+            <Button fx:id="btAniadir" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#aniadirProducto" styleClass="boton" text="AÑADIR">
                <VBox.margin>
-                  <Insets top="95.0" />
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btActualizar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#actualizarProducto" styleClass="boton" text="ACTUALIZAR">
+               <VBox.margin>
+                  <Insets top="50.0" />
                </VBox.margin>
             </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="boton" text="LIMPIAR">

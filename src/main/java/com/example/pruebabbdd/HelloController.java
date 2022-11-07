@@ -16,10 +16,13 @@ import javafx.util.Callback;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.StringTokenizer;
 
 public class HelloController {
     private ObservableList <Productos> datos;
+    private Productos productoAux;
     private ObservableList<ObservableList> data;
     @FXML
     private TableView tvDatos;
@@ -45,6 +48,28 @@ public class HelloController {
     private TableColumn tcMSRP;
     @FXML
     private TableColumn tcProductDescription;
+    @FXML
+    private TextField txtID;
+    @FXML
+    private Button btAniadir;
+    @FXML
+    private TextField txtNombre;
+    @FXML
+    private TextField txtLinea;
+    @FXML
+    private TextField txtEscala;
+    @FXML
+    private TextField txtVendedor;
+    @FXML
+    private TextField txtStock;
+    @FXML
+    private TextField txtPCompra;
+    @FXML
+    private TextField txtPVenta;
+    @FXML
+    private TextField txtDescripcion;
+    @FXML
+    private Button btActualizar;
 
     @Deprecated
     public void onEjecutarConsulta(ActionEvent actionEvent) {
@@ -193,8 +218,121 @@ public class HelloController {
 
         tvDatos.setItems(datos);
     }
+
+    //METODO PARA METER DATOS
+    public void altaProducto() {
+
+        try {
+            // Nos conectamos
+            conexionBBDD = DriverManager.getConnection(servidor, usuario, passwd);
+            String SQL = "INSERT INTO products ("
+                    + " productCode ,"
+                    + " productName ,"
+                    + " productLine ,"
+                    + " productScale ,"
+                    + " productVendor ,"
+                    + " productDescription ,"
+                    + " quantityInStock ,"
+                    + " buyPrice ,"
+                    + " MSRP  )"
+                    + " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+            PreparedStatement st = conexionBBDD.prepareStatement(SQL);
+            st.setString(1, txtID.getText());
+            st.setString(2, txtNombre.getText());
+            st.setString(3, txtLinea.getText());
+            st.setString(4, txtEscala.getText());
+            st.setString(5, txtVendedor.getText());
+            st.setString(6, txtDescripcion.getText());
+            st.setInt(7, Integer.parseInt(txtStock.getText()));
+            st.setDouble(8, Double.parseDouble(txtPCompra.getText()));
+            st.setDouble(9, Double.parseDouble(txtPVenta.getText()));
+
+            // Ejecutamos la consulta preparada (con las ventajas de seguridad y velocidad en el servidor de BBDD
+            // nos devuelve el número de registros afectados. Al ser un Insert nos debe devolver 1 si se ha hecho correctamente
+            st.executeUpdate();
+            st.close();
+            conexionBBDD.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Metodo para actualizar
+    public void actualizarDatos() {
+
+        try {
+            // Nos conectamos
+            conexionBBDD = DriverManager.getConnection(servidor, usuario, passwd);
+            String SQL = "UPDATE products "
+                    + " SET "
+                    + " productName = ? ,"
+                    + " productLine = ? ,"
+                    + " productScale = ? ,"
+                    + " productVendor = ? ,"
+                    + " productDescription = ? ,"
+                    + " quantityInStock = ? ,"
+                    + " buyPrice = ? ,"
+                    + " MSRP = ?  "
+                    + " WHERE productCode = ? ";
+
+            PreparedStatement st = conexionBBDD.prepareStatement(SQL);
+            st.setString(9, txtID.getText());
+            st.setString(1, txtNombre.getText());
+            st.setString(2, txtLinea.getText());
+            st.setString(3, txtEscala.getText());
+            st.setString(4, txtVendedor.getText());
+            st.setString(5, txtDescripcion.getText());
+            st.setInt(6, Integer.parseInt(txtStock.getText()));
+            st.setDouble(7, Double.parseDouble(txtPCompra.getText()));
+            st.setDouble(8, Double.parseDouble(txtPVenta.getText()));
+
+            // Ejecutamos la consulta preparada (con las ventajas de seguridad y velocidad en el servidor de BBDD
+            // nos devuelve el número de registros afectados. Al ser un Insert nos debe devolver 1 si se ha hecho correctamente
+            st.executeUpdate();
+            st.close();
+            conexionBBDD.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Cargar datos al seleccionar
+    private void cargarGestorDobleCLick () {
+        tvDatos.setRowFactory(tv -> {
+            TableRow<Productos> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    txtID.setText(row.getItem().getProductCode());
+                    txtLinea.setText(row.getItem().getProductLine());
+                    txtNombre.setText(row.getItem().getProductName());
+                    txtEscala.setText(row.getItem().getProductScale());
+                    txtVendedor.setText(row.getItem().getProductVendor());
+                    txtDescripcion.setText(row.getItem().getProductDescription());
+                    txtPCompra.setText(String.valueOf(row.getItem().getBuyPrice()));
+                    txtPVenta.setText(String.valueOf(row.getItem().getMSRP()));
+                    txtStock.setText(String.valueOf(row.getItem().getQuantityInStock()));
+                }
+            });
+            return row;
+        });
+    }
+
     //METODO PARA INICIALIZAR
     public void initialize() {
             cargarDatosTabla();
+            cargarGestorDobleCLick();
     }
+
+    @FXML
+    public void aniadirProducto(Event event) {
+            altaProducto();
+    }
+
+
+    @FXML
+    public void actualizarProducto(Event event) {
+            actualizarDatos();
+    }
+
 }
